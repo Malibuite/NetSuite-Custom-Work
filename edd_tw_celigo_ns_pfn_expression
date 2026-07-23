@@ -1,0 +1,27 @@
+{{#if line_items[*].properties}}
+  {{#contains (jsonSerialize line_items[*].properties) "_pngname_0"}}
+    {{#each line_items[*].properties}}
+      {{#compare this.name "==" "_pngname_0"}}
+        {{this.value}}
+      {{/compare}}
+    {{/each}}
+  {{else}}
+    {{#if (split line_items[*].name " - " 3)}}
+      {{split line_items[*].name " - " 0}} - {{split line_items[*].name " - " 3}}
+    {{else}}
+      {{split line_items[*].name " - " 0}}
+    {{/if}}
+  {{/contains}}
+{{else}}
+  {{#if (split line_items[*].name " - " 3)}}
+    {{split line_items[*].name " - " 0}} - {{split line_items[*].name " - " 3}}
+  {{else}}
+    {{split line_items[*].name " - " 0}}
+  {{/if}}
+{{/if}}
+
+
+/**
+ * Collapsed to on line:
+ * {{#if line_items[*].properties}}{{#contains (jsonSerialize line_items[*].properties) "_pngname_0"}}{{#each line_items[*].properties}}{{#compare this.name "==" "_pngname_0"}}{{this.value}}{{/compare}}{{/each}}{{else}}{{#if (split line_items[*].name " - " 3)}}{{split line_items[*].name " - " 0}} - {{split line_items[*].name " - " 3}}{{else}}{{split line_items[*].name " - " 0}}{{/if}}{{/contains}}{{else}}{{#if (split line_items[*].name " - " 3)}}{{split line_items[*].name " - " 0}} - {{split line_items[*].name " - " 3}}{{else}}{{split line_items[*].name " - " 0}}{{/if}}{{/if}}
+ */
